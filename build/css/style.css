@@ -1,0 +1,115 @@
+body {
+  background-color: #f5f6f8;
+}
+
+.jobsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0 0 33%;
+  margin-bottom: 5%;
+}
+
+.jobCard {
+  height: 350px;
+  width: 425px;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 60px;
+  margin-right: 20px;
+}
+
+.jobContainer {
+  display: flex;
+  margin-left: 10%;
+  justify-content: left;
+}
+
+.jobImg {
+  margin-top: -20px;
+  height: 50px;
+  width: 50px;
+}
+
+.jobImgDetail {
+  height: 100px;
+  width: 100px;
+}
+
+.jobDetailHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.jobDetailButton {
+  margin-top: 8%;
+  height: 30px;
+}
+
+.jobDetailHeaderCompany {
+  margin-top: 8%;
+}
+
+.buttonText {
+  text-decoration: none;
+  color: #5865e0;
+}
+
+.jobDetailHowToApply {
+  background-color: #5865e0;
+  height: 200px;
+  width: 60%;
+  border-radius: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+  flex-wrap: wrap;
+}
+.jobDetailHowToApplyText {
+  color: white;
+  margin-left: 20px;
+  padding-top: 5%;
+}
+
+.jobDetailHowToApplyBody {
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5%;
+  flex-wrap: wrap;
+}
+
+.jobDetailDescription {
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: white;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.jobDetailDescriptionText {
+  padding: 5px 5px 5px 5px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.headerDiv {
+  background-color: #5865e0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100px;
+  margin-top: -2.5%;
+  margin-left: -1%;
+}
+
+.headerText {
+  color: white;
+  font-style: bold;
+  margin-left: 5%;
+  padding-top: 2%;
+}
