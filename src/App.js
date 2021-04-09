@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import useFetchJobs from './useFetchJobs.js';
 import { Container } from 'react-bootstrap';
 import JobDetail from './JobDetail';
@@ -6,6 +6,10 @@ import Job from './Job';
 import Header from './Header';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SearchJob from './SearchJob';
+import styled, { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme, GlobalStyles } from './themes';
+
+const StyledApp = styled.div``;
 
 const epochs = [
   ['year', 31536000],
@@ -42,6 +46,7 @@ function App() {
   const [newJob, setJob] = useState({});
   const [click, setClick] = useState(false);
   const { jobs, error } = useFetchJobs(params, page);
+  const [theme, setTheme] = useState('light');
 
   function loadMore() {
     setPage(page + 1);
@@ -56,6 +61,10 @@ function App() {
     console.log('PARAMS -> ', e.target.name, e.target.value);
   }
 
+  function toggleTheme() {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     setParams({
@@ -63,62 +72,67 @@ function App() {
       description: e.target.description.value,
     });
   }
-  console.log(params);
 
   return click === false ? (
-    <>
-      <Header />
-      <SearchJob
-        params={params}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        click={click}
-        setClick={setClick}
-      />
-      <Container>
-        <div>
-          {error ? (
-            <h1> Error, please refresh the page</h1>
-          ) : click === false ? (
-            <InfiniteScroll
-              dataLength={jobs.length}
-              pageStart={page}
-              next={loadMore}
-              hasMore={true}
-              loader={<h4>Loading...</h4>}
-            >
-              <div className='jobsContainer'>
-                {jobs.map((job) => {
-                  return (
-                    <Job
-                      key={job.id}
-                      job={job}
-                      setClick={setClick}
-                      setJob={setJob}
-                      timeAgo={timeAgo}
-                    />
-                  );
-                })}
-              </div>
-            </InfiniteScroll>
-          ) : (
-            <JobDetail job={newJob} timeAgo={timeAgo} setClick={setClick} />
-          )}
-        </div>
-      </Container>
-    </>
-  ) : (
-    <>
-      <Header />
-      <div>
-        <JobDetail
-          timeAgo={timeAgo}
-          job={newJob}
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <StyledApp>
+        <Header toggleTheme={toggleTheme} />
+        <SearchJob
+          params={params}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
           click={click}
           setClick={setClick}
         />
-      </div>
-    </>
+        <Container>
+          <div>
+            {error ? (
+              <h1> Error, please refresh the page</h1>
+            ) : click === false ? (
+              <InfiniteScroll
+                dataLength={jobs.length}
+                pageStart={page}
+                next={loadMore}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+              >
+                <div className='jobsContainer'>
+                  {jobs.map((job) => {
+                    return (
+                      <Job
+                        key={job.id}
+                        job={job}
+                        setClick={setClick}
+                        setJob={setJob}
+                        timeAgo={timeAgo}
+                      />
+                    );
+                  })}
+                </div>
+              </InfiniteScroll>
+            ) : (
+              <JobDetail job={newJob} timeAgo={timeAgo} setClick={setClick} />
+            )}
+          </div>
+        </Container>
+      </StyledApp>
+    </ThemeProvider>
+  ) : (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <StyledApp>
+        <Header toggleTheme={toggleTheme} />
+        <div>
+          <JobDetail
+            timeAgo={timeAgo}
+            job={newJob}
+            click={click}
+            setClick={setClick}
+          />
+        </div>
+      </StyledApp>
+    </ThemeProvider>
   );
 }
 
