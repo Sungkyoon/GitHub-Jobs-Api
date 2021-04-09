@@ -16,6 +16,7 @@ body {
   width: 425px;
   border-radius: 5px;
   background-color: white;
+  margin-top: 30px;
   margin-bottom: 60px;
   margin-right: 20px;
 }
@@ -34,31 +35,50 @@ body {
 
 .jobImgDetail {
   height: 100px;
-  width: 100px;
+  width: 120px;
+  padding-left: 0;
 }
 
 .jobDetailHeader {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   margin-left: 20%;
   margin-right: 20%;
   background-color: white;
   border-radius: 10px;
 }
-
+.jobDetailButtonDiv {
+  margin-left: 20%;
+}
 .jobDetailButton {
-  margin-top: 8%;
-  height: 30px;
+  margin-top: 30%;
+  height: 40px;
+  background-color: rgb(207, 206, 236);
+  border-radius: 4px;
+  border: 0;
+  width: 120px;
+  font-weight: bold;
+}
+.jobDetailHeaderDiv {
+  margin-left: 8%;
+  margin-bottom: -30%;
 }
 
 .jobDetailHeaderCompany {
-  margin-top: 8%;
+  margin-top: 5%;
+  font-size: 25px;
+  width: 400px;
 }
 
+.jobDetailHeaderLocation {
+  color: grey;
+  margin-top: -5%;
+}
 .buttonText {
   text-decoration: none;
   color: #5865e0;
+  background-color: none;
+  border: 0;
 }
 
 .jobDetailHowToApply {
@@ -112,4 +132,100 @@ body {
   font-style: bold;
   margin-left: 5%;
   padding-top: 2%;
+}
+
+.form {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.formRow {
+  display: flex;
+  margin-left: 15%;
+  margin-right: 30%;
+  flex-direction: row;
+  align-items: center;
+  height: 80px;
+  background-color: white;
+  width: 80%;
+  border-radius: 10px;
+  margin-top: -3%;
+}
+
+.description {
+  flex: 1;
+  padding-right: 1rem;
+  padding-left: 2rem;
+}
+.location {
+  flex: 1;
+  padding-right: 1rem;
+  padding-left: 2rem;
+}
+
+.formButton {
+  flex: 1;
+  padding-left: 1rem;
+  height: 40px;
+  padding-right: 1rem;
+}
+
+.check {
+  padding-left: 2rem;
+}
+
+.button {
+  background-color: #5865e0;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  height: 100%;
+  width: 80px;
+  margin-left: 2rem;
+}
+.buttonDetail {
+  background-color: #5865e0;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  height: 50px;
+  width: 100px;
+  margin-top: 5px;
+  font-size: large;
+}
+
+.inputForm {
+  width: 250px;
+  border: 0;
+}
+
+.inputDivider {
+  width: 0.1rem;
+  height: 100%;
+  opacity: 0.2;
+  background-color: rgb(10, 10, 10);
+}
+
+.applyNow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.howToApplyButton {
+  background-color: #5865e0;
+  border: 0;
+  border-radius: 5px;
+  height: 50px;
+  width: 100px;
+  margin-top: 15px;
+  font-size: large;
+}
+
+.buttonTextApply {
+  color: white;
+  text-decoration: none;
+}
+.headerDetails {
+  display: flex;
+  flex-direction: column;
 }

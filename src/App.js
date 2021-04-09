@@ -41,17 +41,19 @@ function App() {
   const [page, setPage] = useState(1);
   const [newJob, setJob] = useState({});
   const [click, setClick] = useState(false);
-  const { jobs, error, hasNextPage } = useFetchJobs(params, page);
+  const { jobs, error } = useFetchJobs(params, page);
 
   function loadMore() {
     setPage(page + 1);
   }
 
   function handleChange(e) {
-    setPage(1);
+    setParams({ [e.target.name]: e.target.value });
     setParams((p) => {
-      return { ...p, [e.target.name]: e.target.value };
+      if (e.target.name === 'full_time') return { [e.target.name]: true };
+      else return { ...p, [e.target.name]: e.target.value };
     });
+    console.log('PARAMS -> ', e.target.name, e.target.value);
   }
 
   function handleSubmit(e) {
@@ -70,6 +72,8 @@ function App() {
         params={params}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        click={click}
+        setClick={setClick}
       />
       <Container>
         <div>
@@ -107,7 +111,12 @@ function App() {
     <>
       <Header />
       <div>
-        <JobDetail timeAgo={timeAgo} job={newJob} />
+        <JobDetail
+          timeAgo={timeAgo}
+          job={newJob}
+          click={click}
+          setClick={setClick}
+        />
       </div>
     </>
   );
