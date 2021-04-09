@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import useFetchJobs from './useFetchJobs.js';
 import { Container } from 'react-bootstrap';
 import JobDetail from './JobDetail';
@@ -45,15 +45,10 @@ function App() {
   const [page, setPage] = useState(1);
   const [newJob, setJob] = useState({});
   const [click, setClick] = useState(false);
-  const { jobs, error } = useFetchJobs(params, page);
+  const { jobs, error, hasNextPage } = useFetchJobs(params, page);
   const [theme, setTheme] = useState('light');
 
-  function loadMore() {
-    setPage(page + 1);
-  }
-
   function handleChange(e) {
-    setParams({ [e.target.name]: e.target.value });
     setParams((p) => {
       if (e.target.name === 'full_time') return { [e.target.name]: true };
       else return { ...p, [e.target.name]: e.target.value };
@@ -92,13 +87,12 @@ function App() {
             ) : click === false ? (
               <InfiniteScroll
                 dataLength={jobs.length}
-                pageStart={page}
-                next={loadMore}
-                hasMore={true}
+                next={() => setPage(page + 1)}
+                hasMore={hasNextPage}
                 loader={<h4>Loading...</h4>}
               >
                 <div className='jobsContainer'>
-                  {jobs.map((job) => {
+                  {jobs.map((job, index) => {
                     return (
                       <Job
                         key={job.id}
